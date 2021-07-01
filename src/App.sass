@@ -2,6 +2,7 @@ $primary-font-size: 50px
 $primary-color: #2e2e2e
 $font-family: Verdana
 $controls-height: 120px
+$controls-background: #f5f5f5
 $controls-color: #2e2e2e
 $content-width: 890px
 $active-color: #0077a7
@@ -21,6 +22,10 @@ main
   height: 100vh
   background-color: #fcfcfc
 
+button
+  border: none
+  background-color: $controls-background
+
 .current-control
   padding: auto 0
 
@@ -31,7 +36,7 @@ main
   display: flex
   justify-content: space-between
   height: $controls-height
-  background-color: #f5f5f5
+  background-color: $controls-background
   box-shadow: 0px -2px 6px -4px rgba(0, 0, 0, 0.5)
 
 .control-elem
