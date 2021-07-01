@@ -4,6 +4,7 @@ $font-family: Verdana
 $controls-height: 120px
 $controls-color: #2e2e2e
 $content-width: 890px
+$active-color: #0077a7
 
 body
   margin: 0
@@ -38,11 +39,11 @@ main
   align-items: center
   justify-content: space-evenly
   flex-direction: column
-  // background-color: #f5f5f5
   color: $controls-color
   font-size: 14px
   font-weight: 600
   width: 200px
+  transition: all 0.2s ease
 
 svg path
   stroke: inherit
@@ -52,3 +53,14 @@ svg path
 svg
   fill: $controls-color
   width: 50px
+
+.control-elem:hover
+  color: $active-color
+  fill: $active-color
+  background-color: #e4e4e4
+
+.active
+  color: $active-color
+
+.active > svg
+  fill: $active-color
