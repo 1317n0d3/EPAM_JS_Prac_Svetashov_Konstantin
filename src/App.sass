@@ -1,12 +1,54 @@
-$primary-font-size: 72px
-$primary-color: #025272
+$primary-font-size: 50px
+$primary-color: #2e2e2e
 $font-family: Verdana
+$controls-height: 120px
+$controls-color: #2e2e2e
+$content-width: 890px
 
 body
   margin: 0
-
-main
-  text-align: center
   font-family: $font-family
   font-size: $primary-font-size
   color: $primary-color
+
+main
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 0 auto
+  width: $content-width
+  height: 100vh
+  background-color: #fcfcfc
+
+.current-control
+  padding: auto 0
+
+.controls
+  position: fixed
+  bottom: 0
+  width: $content-width
+  display: flex
+  justify-content: space-between
+  height: $controls-height
+  background-color: #f5f5f5
+  box-shadow: 0px -2px 6px -4px rgba(0, 0, 0, 0.5)
+
+.control-elem
+  display: flex
+  align-items: center
+  justify-content: space-evenly
+  flex-direction: column
+  // background-color: #f5f5f5
+  color: $controls-color
+  font-size: 14px
+  font-weight: 600
+  width: 200px
+
+svg path
+  stroke: inherit
+  stroke-width: inherit
+  fill: inherit
+
+svg
+  fill: $controls-color
+  width: 50px
