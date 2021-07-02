@@ -4,6 +4,7 @@ import IconMicrophone from '../../assets/IconMicrophone';
 import IconStream from '../../assets/IconStream';
 import { ALL_VOICES, MICROPHONE, STREAM } from '../../constants/constants';
 import Control from './Control/Control';
+import './Controls.sass';
 
 const Controls = ({ activeMode, setActiveMode }) => {
   return (

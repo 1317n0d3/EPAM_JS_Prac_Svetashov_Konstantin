@@ -1,4 +1,5 @@
 import React from 'react';
+import './Control.sass';
 
 const Control = ({ activeMode, setActiveMode, currentMode, Icon }) => {
   return (

@@ -1,4 +1,6 @@
 import React from 'react';
+import './Content.sass';
+
 
 const Content = ({ activeMode }) => {
   return (
