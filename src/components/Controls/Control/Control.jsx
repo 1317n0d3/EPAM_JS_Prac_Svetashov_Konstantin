@@ -6,7 +6,7 @@ const Control = ({ activeMode, setActiveMode, currentMode, Icon }) => {
     <button className={ activeMode === currentMode ? 'control-elem active' : 'control-elem' }
       onClick={ () => setActiveMode(currentMode) }>
       <Icon />
-      <span>{ currentMode }</span>
+      <span className='control-name'>{ currentMode }</span>
     </button>
   );
 }
