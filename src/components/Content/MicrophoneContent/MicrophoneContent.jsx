@@ -2,9 +2,9 @@ import React from 'react';
 
 const MicrophoneContent = () => {
   return (
-    <div>
+    <section className='current-control'>
       <span>Active: microphone</span>
-    </div>
+    </section>
   );
 }
 

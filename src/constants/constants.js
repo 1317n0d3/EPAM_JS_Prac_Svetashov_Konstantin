@@ -1,3 +1,3 @@
-export const ALL_VOICES = 'all voices',
+export const ALL_VOICES = 'all-voices',
   MICROPHONE = 'microphone',
   STREAM = 'stream';

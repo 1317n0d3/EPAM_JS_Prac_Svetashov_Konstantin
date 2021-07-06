@@ -12,12 +12,12 @@ const AllVoicesContent = ({ socket }) => {
   }, []);
 
   return (
-    <div>
+    <section className='current-control'>
       <span>Active: all devices</span>
       <ul>
         { messages[messages.length - 1] }
       </ul>
-    </div>
+    </section>
   );
 }
 

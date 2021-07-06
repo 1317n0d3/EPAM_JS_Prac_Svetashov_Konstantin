@@ -8,9 +8,9 @@ const StreamContent = () => {
   }, []);
 
   return (
-    <div>
+    <section className='current-control'>
       <span>Active: stream</span>
-    </div>
+    </section>
   );
 }
 
