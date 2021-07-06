@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
-import { ALL_VOICES, MICROPHONE, STREAM } from './constants/constants';
-import AllVoicesContent from './components/Content/AllVoicesContent/AllVoicesContent';
-import MicrophoneContent from './components/Content/MicrophoneContent/MicrophoneContent';
-import StreamContent from './components/Content/StreamContent/StreamContent';
-import Controls from './components/Controls/Controls';
+import { ALL_VOICES, MICROPHONE, STREAM } from './constants';
+import AllVoicesContent from './components/Content/AllVoicesContent';
+import MicrophoneContent from './components/Content/MicrophoneContent';
+import StreamContent from './components/Content/StreamContent';
+import Controls from './components/Controls';
 import './App.sass';
 import { io } from 'socket.io-client';
 
