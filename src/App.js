@@ -6,11 +6,11 @@ import MicrophoneContent from './components/Content/MicrophoneContent';
 import StreamContent from './components/Content/StreamContent';
 import Controls from './components/Controls';
 import './App.sass';
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
-const socket = io('https://voicy-speaker.herokuapp.com:8080');
+// const socket = io('https://voicy-speaker.herokuapp.com:8080');
 
-console.log(socket.connected);
+// console.log(socket.connected);
 
 function App() {
   const [activeMode, setActiveMode] = useState(ALL_VOICES);
