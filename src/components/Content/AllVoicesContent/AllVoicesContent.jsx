@@ -4,19 +4,26 @@ const AllVoicesContent = () => {
   const [data, setData] = useState([]),
     messages = data.map((message, index) => <li key={ index }>
         <span>{message.timeStamp.slice(4, 21)}</span>
-        <audio controls loop src={ createAudioUrl(message.audioBlob[0].data) } type="audio/mpeg"></audio>
+        <audio controls src={ createAudioUrl(message.audioBlob[0].data) } type="audio/wav"></audio>
       </li>);
 
   useEffect(() => {
     fetch('https://voicy-speaker.herokuapp.com/voices')
-      .then(response => response.json())
-      .then(json => setData(json))
+    .then(response => response.json())
+    .then(json => setData(json))
+    // setInterval(() => {
+    //   fetch('https://voicy-speaker.herokuapp.com/voices')
+    //   .then(response => response.json())
+    //   .then(json => setData(json))
+      
+    //   console.log('fetching');
+    // }, 1000)
   }, []);
 
   function createAudioUrl(audioChunks) {
-    const audioBlob = new Blob(audioChunks, {type : 'audio/ogg'});
+    const buff = new Int8Array(audioChunks).buffer;
+    const audioBlob = new Blob([buff], {type : 'audio/wav'});
     const audioUrl = URL.createObjectURL(audioBlob);
-    // const audio = new Audio(audioUrl);
     return audioUrl;
   }
 

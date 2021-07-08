@@ -6,9 +6,9 @@ const StreamContent = ({ socket }) => {
       const audioBlob = new Blob(audioChunks);
       const audioUrl = URL.createObjectURL(audioBlob);
       const audio = new Audio(audioUrl);
-      console.log('listen');
       audio.play();
     });
+    return () => socket.off('audioMessage');
   }, [socket]);
 
   return (
