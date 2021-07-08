@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 const AllVoicesContent = () => {
   const [data, setData] = useState([]),
-    messages = data.map((message, index) => <li key={ index }><span>{message.timeStamp.slice(4, 21)}</span><audio controls loop src={ createAudioUrl(message.audioBlob[0].data) } type="audio/mpeg"></audio></li>);
+    messages = data.map((message, index) => <li key={ index }>
+        <span>{message.timeStamp.slice(4, 21)}</span>
+        <audio controls loop src={ createAudioUrl(message.audioBlob[0].data) } type="audio/mpeg"></audio>
+      </li>);
 
   useEffect(() => {
     fetch('https://voicy-speaker.herokuapp.com/voices')
@@ -17,7 +20,8 @@ const AllVoicesContent = () => {
     return audioUrl;
   }
 
-  const renderMessages = (count, messages) => (count < messages.length) ? messages.slice(messages.length - count, messages.length) : messages;
+  const renderMessages = (count, messages) => (count < messages.length) ?
+    messages.slice(messages.length - count, messages.length) : messages;
 
   return (
     <section className='current-control all-voices'>
