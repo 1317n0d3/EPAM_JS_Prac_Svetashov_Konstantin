@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {BrowserRouter, Route, Redirect} from 'react-router-dom';
 import { ALL_VOICES, MICROPHONE, STREAM } from './constants';
 import AllVoicesContent from './components/Content/AllVoicesContent';
@@ -10,16 +10,23 @@ import { io } from 'socket.io-client';
 
 function App() {
   const [activeMode, setActiveMode] = useState(ALL_VOICES);
-  
-  const socket = io('https://voicy-speaker.herokuapp.com');
+  const [socket, setSocket] = useState(null);
 
-  socket.on("connect_error", (error) => {
-  console.log(error.message);
-  });
+  useEffect(() => {
+    const socket = io('https://voicy-speaker.herokuapp.com');
 
-  socket.on("connect", () => {
-  console.log('socket has been connected');
-  });
+    setSocket(socket);
+    
+    socket.on("connect_error", (error) => {
+    console.log(error.message);
+    });
+
+    socket.on("connect", () => {
+    console.log('socket connected');
+    });
+
+    return () => socket.close();
+  }, []);
 
   return (
     <BrowserRouter>
