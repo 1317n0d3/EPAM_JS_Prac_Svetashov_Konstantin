@@ -8,9 +8,13 @@ const AllVoicesContent = () => {
       </li>);
 
   useEffect(() => {
+    let isMounted = true;
+    
     fetch('https://voicy-speaker.herokuapp.com/voices')
     .then(response => response.json())
-    .then(json => setData(json))
+    .then(json => { if(isMounted) setData(json) })
+
+    return () => { isMounted = false }
   }, []);
 
   function createAudioUrl(audioChunks) {

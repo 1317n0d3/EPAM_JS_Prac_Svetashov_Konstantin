@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import IconLiveStreaming from '../../../assets/IconLiveStreaming';
 
 const StreamContent = ({ socket }) => {
   useEffect(() => {
@@ -12,8 +13,9 @@ const StreamContent = ({ socket }) => {
   }, [socket]);
 
   return (
-    <section className='current-control'>
-      <span>Stream messages</span>
+    <section className='current-control stream-content'>
+      <IconLiveStreaming />
+      <span>Streaming messages</span>
     </section>
   );
 }
