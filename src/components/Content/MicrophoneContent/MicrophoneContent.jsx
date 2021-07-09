@@ -32,7 +32,6 @@ const MicrophoneContent = ({ socket }) => {
               audioChunks.push(event.data);
           });
           mediaRecorder.addEventListener("stop", () => {
-              console.log('send message');
               socket.emit('audioMessage', audioChunks);
               setAudioChunks([]);
           });
