@@ -13,7 +13,7 @@ const StreamContent = ({ socket }) => {
 
   return (
     <section className='current-control'>
-      <span>Active: stream</span>
+      <span>Stream messages</span>
     </section>
   );
 }

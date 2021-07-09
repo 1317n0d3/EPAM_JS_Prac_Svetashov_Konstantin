@@ -11,13 +11,6 @@ const AllVoicesContent = () => {
     fetch('https://voicy-speaker.herokuapp.com/voices')
     .then(response => response.json())
     .then(json => setData(json))
-    // setInterval(() => {
-    //   fetch('https://voicy-speaker.herokuapp.com/voices')
-    //   .then(response => response.json())
-    //   .then(json => setData(json))
-      
-    //   console.log('fetching');
-    // }, 1000)
   }, []);
 
   function createAudioUrl(audioChunks) {
