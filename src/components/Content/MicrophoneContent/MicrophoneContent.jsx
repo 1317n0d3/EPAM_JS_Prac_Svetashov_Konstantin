@@ -21,25 +21,26 @@ const MicrophoneContent = ({ socket }) => {
     }
   }
 
-  function recordAudio() {
-    navigator.mediaDevices.getUserMedia({ audio: true })
-    .then(stream => {
-        const mediaRecorder = new MediaRecorder(stream);
-        setMediaRecorder(mediaRecorder);
-        
-        mediaRecorder.addEventListener("dataavailable", event => {
-            audioChunks.push(event.data);
-        });
-        mediaRecorder.addEventListener("stop", () => {
-            socket.emit('audioMessage', audioChunks);
-            setAudioChunks([]);
-        });
-    });
-  }
-
   useEffect(() => {
+    const recordAudio = () => {
+      navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
+          const mediaRecorder = new MediaRecorder(stream);
+          setMediaRecorder(mediaRecorder);
+          
+          mediaRecorder.addEventListener("dataavailable", event => {
+              audioChunks.push(event.data);
+          });
+          mediaRecorder.addEventListener("stop", () => {
+              console.log('send message');
+              socket.emit('audioMessage', audioChunks);
+              setAudioChunks([]);
+          });
+      });
+    }
+
     recordAudio();
-  }, [])
+  }, [audioChunks, socket])
 
   return (
     <section className='current-control microphone'>
