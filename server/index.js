@@ -6,6 +6,13 @@ const http = require('http');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
+const allUsers = [];
+const allMessages = [];
+
+
+function sendUserCountByAll(allUsers) { allUsers.forEach(socket => socket.emit('user', allUsers.length)) }
+function sendMessagesByAll(allUsers, allMessages) { allUsers.forEach(socket => socket.emit('audioMessage', allMessages[allMessages.length - 1])) }
+
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
 
@@ -13,11 +20,9 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-let allUsers = [];
-
-function sendUserCountByAll(allUsers) {
-  allUsers.forEach(socket => socket.emit('user', allUsers.length));
-}
+app.get('/voices', function (req, res) {
+  res.send(allMessages);
+});
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -30,6 +35,11 @@ io.on('connection', (socket) => {
     allUsers.splice(allUsers.indexOf(socket), 1);
     
     sendUserCountByAll(allUsers);
+  });
+
+  socket.on('audioMessage', (audioChunks) => {
+    allMessages.push(audioChunks);
+    sendMessagesByAll(allUsers, allMessages);
   });
 });
 
