@@ -16,11 +16,12 @@ function sendMessageByAll(allUsers, message) { allUsers.forEach(socket => socket
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
 
+app.get('/voices', (req, res) => res.send(JSON.stringify(allMessages)) );
+
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.get('/voices', (req, res) => res.send(JSON.stringify(allMessages)) );
 
 io.on('connection', (socket) => {
   console.log('a user connected');
@@ -37,7 +38,7 @@ io.on('connection', (socket) => {
 
   socket.on('audioMessage', (audioChunks) => {
     allMessages.push({
-      'timeStamp': new Date().getTime(),
+      'timeStamp': new Date().toString(),
       'audioBlob': audioChunks
     });
     sendMessageByAll(allUsers, audioChunks);
