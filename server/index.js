@@ -20,9 +20,7 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.get('/voices', function (req, res) {
-  res.send(JSON.stringify(allMessages));
-});
+app.get('/voices', (req, res) => res.send(JSON.stringify(allMessages)) );
 
 io.on('connection', (socket) => {
   console.log('a user connected');

@@ -10,7 +10,6 @@ const AllVoicesContent = () => {
   useEffect(() => {
     let isMounted = true;
     
-    // fetch('https://voicy-speaker.herokuapp.com/voices')
     fetch('http://localhost:9000/voices')
     .then(response => response.json())
     .then(json => { if(isMounted) setData(json) })
