@@ -4,7 +4,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { io } from 'socket.io-client';
 
-const socket = io('https://voicy-speaker.herokuapp.com');
+// const socket = io('https://voicy-speaker.herokuapp.com');
+
+const socket = io('http://localhost:9000');
 
 
 ReactDOM.render(
