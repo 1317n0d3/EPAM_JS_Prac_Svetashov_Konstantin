@@ -11,7 +11,7 @@ const allMessages = [];
 
 
 function sendUserCountByAll(allUsers) { allUsers.forEach(socket => socket.emit('user', allUsers.length)) }
-function sendMessagesByAll(allUsers, allMessages) { allUsers.forEach(socket => socket.emit('audioMessage', allMessages[allMessages.length - 1])) }
+function sendMessageByAll(allUsers, message) { allUsers.forEach(socket => socket.emit('audioMessage', message)) }
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
@@ -21,7 +21,7 @@ app.get('/*', function (req, res) {
 });
 
 app.get('/voices', function (req, res) {
-  res.send(allMessages);
+  res.send(JSON.stringify(allMessages));
 });
 
 io.on('connection', (socket) => {
@@ -38,8 +38,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('audioMessage', (audioChunks) => {
-    allMessages.push(audioChunks);
-    sendMessagesByAll(allUsers, allMessages);
+    allMessages.push({
+      'timeStamp': new Date().getTime(),
+      'audioBlob': audioChunks
+    });
+    sendMessageByAll(allUsers, audioChunks);
   });
 });
 
