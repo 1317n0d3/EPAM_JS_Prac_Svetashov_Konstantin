@@ -13,8 +13,24 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
+let allUsers = [];
+
+function sendUserCountByAll(allUsers) {
+  allUsers.forEach(socket => socket.emit('user', allUsers.length));
+}
+
 io.on('connection', (socket) => {
   console.log('a user connected');
+  allUsers.push(socket);
+  
+  sendUserCountByAll(allUsers);
+  
+  socket.on('disconnect', () => {
+    console.log('a user disconnected');
+    allUsers.splice(allUsers.indexOf(socket), 1);
+    
+    sendUserCountByAll(allUsers);
+  });
 });
 
 server.listen(9000, () => {
